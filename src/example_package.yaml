@@ -1,0 +1,53 @@
+metadata:
+  name: package_name # string
+  version: package_version # string
+  release: 1 # number
+  arch: {{build.arch}} # enum (arm arm64 i)
+  license: GPL # string
+  summary: 简短介绍 # string
+  description: |
+    详细介绍
+  # string
+
+variables:
+  key1: value1 # key-value
+  key2: value2 # key-value
+
+sources:
+  - src01.tar.gz:
+    path: 'https://example.com/{{metadata.name}}/{{src.current.name}}' # string or LIST
+    checksum: "sha256:4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865" # string or SKIP
+  - "src02.desktop"
+  - extra-src: "git+https://github.com/example/example.git?commit=4355a46"
+
+dependencies:
+  build_requires:
+    - gcc: "^11.0.0"
+    - gtk-devel: "^3.0.0"
+    - "make"
+  requires:
+    - gcc: "^11.0.0"
+compile:
+  check: |
+    unzip check
+    cd %{src01.tar.gz} || exit 1
+    git checkout dev
+  compile: |
+    compile
+  test: |
+    test
+packages:
+  - "package01-xxx":
+      package: |
+        cp dist {{package.root}}
+      transaction:
+        before:
+          install: |
+          upgrade: |
+          remove: |
+        after:
+          install: |
+          upgrade: |
+          remove: |
+      files:
+        - "/usr/bin/": [ "binary","sbin" ]
