@@ -1,1 +1,25 @@
 # 项目编译目标（rpm、deb、甚至是 oci-image）
+metadata:
+  name: centos_7
+  include: centos
+files:
+  "build.spec": |
+    spec xxxxx
+cache:
+  - "source/*"
+stage:
+  # 打包命令 （打包完成后使用变量声明告知最后打包生成的包为主）
+  compile: |
+    init script
+    echo "::PACKAGE01::dist/sasa/asas.tar.xz"
+  # 包安装命令 （可能为本地包全路径或者包名称）
+  install_package: |
+    install script
+  # 包卸载命令 （包名称）
+  remove_package: |
+    remove script
+  # 获取包信息（可能为本地包全路径或者包名称）
+  package_info: |
+    echo "::PACKAGE_INPUT::NAME::pkg_name"
+    echo "::PACKAGE_INPUT::VERSION::pkg_version"
+    echo "::PACKAGE_INPUT::RELEASE::pkg_release"

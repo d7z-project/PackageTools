@@ -1,1 +1,4 @@
 # 工程定义的配置
+variables:
+  key1: value1 # key-value
+  key2: value2 # key-value

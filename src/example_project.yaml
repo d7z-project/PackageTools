@@ -1,0 +1,21 @@
+metadata:
+  name: example_project
+  active_profile: prod
+workspace:
+  package: # 不支持远程包
+    - src/*/*.yml
+    - src/*/*.yaml
+  profile:
+    - dev.yaml
+    - prod.yaml
+  target: # 生成目标
+    - file://{project.dir}/schema/target/*.yaml
+    - file://{project.dir}/schema/target/*.yml
+  runtime: # 编译运行时环境
+    - https://example.com/xxx.yaml
+    - file://{project.dir}/schema/runtime/*.yaml
+    - file://{project.dir}/schema/runtime/*.yml
+  template: # 编译模板
+    - https://example.com/xxx.yaml
+    - file://{project.dir}/schema/template/*.yaml
+    - file://{project.dir}/schema/template/*.yml

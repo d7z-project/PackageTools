@@ -2,7 +2,7 @@ metadata:
   name: package_name # string
   version: package_version # string
   release: 1 # number
-  arch: {{build.arch}} # enum (arm arm64 i)
+  arch: {{status.build_arch}} # enum (arm arm64 i)
   license: GPL # string
   summary: 简短介绍 # string
   description: |
@@ -23,7 +23,7 @@ sources:
 dependencies:
   build_requires:
     - gcc: "^11.0.0"
-    - gtk-devel: "^3.0.0"
+    - "{{ value gtk-devel | package_formatter }}": "^3.0.0"
     - "make"
   requires:
     - gcc: "^11.0.0"
@@ -38,8 +38,15 @@ compile:
     test
 packages:
   - "package01-xxx":
-      package: |
-        cp dist {{package.root}}
+      requires:
+        - gcc: "^11.0.0"
+      arch: {{status.build_arch}} # enum (arm arm64 i)
+      summary: 简短介绍 # string
+      description: |
+        详细介绍
+      compile:
+        package: |
+          cp dist {{package.root}}
       transaction:
         before:
           install: |

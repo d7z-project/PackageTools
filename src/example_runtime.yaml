@@ -1,1 +1,24 @@
 # 项目运行时配置，可配置为本地运行、Docker运行 ...
+metadata:
+  name: local
+
+schema: # 识别的变量被定义为 “conf.{{name}}”
+  image:
+    from:
+      - "{{xxx?:dadaas?}}"
+    type: text
+    regex: ''
+  "compile":
+    type: stage
+env: # 此处的环境变量将被注入到工作目标中（注意：）
+  HTTP_PROXY: "{{env.http_proxy?:env.https_proxy?}}"
+  HTTPS_PROXY: "{{env.http_proxy?}}"
+
+stage:
+  init: |
+
+
+graph:
+  - init
+  - [ compile ]
+  - clear
