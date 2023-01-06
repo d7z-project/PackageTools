@@ -1,3 +1,5 @@
+type: Profile/v1
+
 # 工程定义的配置
 variables:
   key1: value1 # key-value

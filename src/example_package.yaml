@@ -1,3 +1,5 @@
+type: Package/v1
+
 metadata:
   name: package_name # string
   version: package_version # string

@@ -1,0 +1,43 @@
+Sample Template
+
+Support Struct :
+Text: 字符串，可转换为 Number Array （ Char 类型 UTF-32 转换而来）
+Number：i64
+Double: f64
+Bool: bool
+Array: Vec
+Struct: struct
+
+{{
+
+struct Custom{
+num:Number
+item:HashMap<>
+}
+}}
+
+{{
+
+}}
+
+say {{ hello_world }}.
+
+{{ note
+for 循环相关内容
+
+}}
+
+{{ for item in array::with_index() }}
+    {{ item.index }}. {{ item.value }}
+    {{ if item.index == 99 || item.index == item::count() - 1  }}
+        {{ break }}
+    {{el-if item.index == 88  }}
+        {{ continue }}
+    {{else}}
+        {{item::get(1)::to_utf32_text()}}
+    {{fi}}
+{{ end-for }}
+
+{{ let data_child = data.child }}
+    {{ data_child }}
+{{fi}}

@@ -1,3 +1,5 @@
+type: Target/v1
+
 # 项目编译目标（rpm、deb、甚至是 oci-image）
 metadata:
   name: centos_7

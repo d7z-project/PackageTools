@@ -1,3 +1,5 @@
+type: Runtime/v1
+
 # 项目运行时配置，可配置为本地运行、Docker运行 ...
 metadata:
   name: local
